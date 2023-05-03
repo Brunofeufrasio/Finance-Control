@@ -6,8 +6,9 @@
 
 h1 {
     text-align: center;
-    margin-top: 150px;
     color: greenyellow;
+    margin-top: 20px;
+   
 }
 
 .corpo {
@@ -45,9 +46,16 @@ div {
    
 }
 
+.d0 , .d1 ,.d2 ,.d3 ,.d4 ,.d5 ,.d6 ,.d7 ,.d8 , .dS, .dI {
+    display: inline-block;
+    width: 150px;
+    background-color: black;
+}
+
 .receita {
     text-align: justify;
     background-color: black;
+    border-radius: 5px 5px 0px 0px ;
 }
 
 .despesas {
@@ -62,6 +70,7 @@ background-color: black;
 
 .saldoInves {
     background-color: black;
+    border-radius: 0px 0px 5px 5px;
 }
 
 button, input {
@@ -79,10 +88,12 @@ button {
     margin: auto;
     height: 30px;
     border-radius: 5px;  
+    cursor: pointer;
+    
 }
 
 label {
-    color: greenyellow;
+    color: greenyellow; 
 }
 
 input {
@@ -101,5 +112,5 @@ footer {
     font-size: 10px;
     font-style: italic;
     color: greenyellow;
-
+    margin-bottom: -30px;
 }
