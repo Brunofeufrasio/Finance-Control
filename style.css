@@ -31,11 +31,20 @@ div {
     padding: 10px;
 }
 
-.d0 , .d1 ,.d2 ,.d3 ,.d4 ,.d5 ,.d6 ,.d7 ,.d8 , .dS, .dI {
+.corpo {
+    border-radius: 5px;
+}
+
+.d0 , .d1 ,.d2 ,.d3 ,.d4 ,.d5 ,.d6 ,.d7 ,.d8 , .dS, .dI      {
     display: inline-block;
     width: 150px;
     background-color: black;
 }
+
+.dp {
+    background-color: black;
+}
+
 
 .receita {
     text-align: justify;
