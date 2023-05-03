@@ -1,24 +1,13 @@
+/* Estilos gerais */
 * {
     margin: 0;
     padding: 0;    
 }
 
-
 h1 {
     text-align: center;
     color: greenyellow;
     margin-top: 20px;
-   
-}
-
-.corpo {
-    position: absolute;
-    width: 90%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    border-radius: 5px;
-    margin: 20px;
 }
 
 body {
@@ -28,8 +17,6 @@ body {
     font-size: 17px;
 }
 
-
-
 h2 {
     margin-bottom: 12px;
     text-align:justify;
@@ -37,13 +24,11 @@ h2 {
 }
 
 div {
-
     background-color: gray;
     padding: 10px;
     margin: 10px;
     text-align:left;
     padding: 10px;
-   
 }
 
 .d0 , .d1 ,.d2 ,.d3 ,.d4 ,.d5 ,.d6 ,.d7 ,.d8 , .dS, .dI {
@@ -59,9 +44,7 @@ div {
 }
 
 .despesas {
-
-background-color: black;
-
+    background-color: black;
 }
 
 .saldo {
@@ -89,7 +72,6 @@ button {
     height: 30px;
     border-radius: 5px;  
     cursor: pointer;
-    
 }
 
 label {
@@ -100,6 +82,7 @@ input {
     display: inline-block;
     margin-bottom: 20px;
 }
+
 footer {
     position: fixed;
     bottom: 0;
@@ -113,4 +96,35 @@ footer {
     font-style: italic;
     color: greenyellow;
     margin-bottom: -30px;
+}
+
+/* Estilos para telas menores */
+@media (max-width: 767px) {
+    h1 {
+        font-size: 24px;
+    }
+
+    body {
+        font-size: 14px;
+    }
+
+    div {
+        margin: 5px;
+        padding: 5px;
+    }
+
+    button {
+        width: 80px;
+        height: 25px;
+    }
+
+    input {
+        margin-bottom: 10px;
+    }
+
+    footer {
+        height: 40px;
+        font-size: 8px;
+        margin-bottom: -20px;
+    }
 }
