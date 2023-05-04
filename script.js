@@ -8,9 +8,11 @@ document.getElementById("internet").addEventListener("input", atualizarSaldo);
 document.getElementById("mercado").addEventListener("input", atualizarSaldo);
 document.getElementById("cartaoCredito").addEventListener("input", atualizarSaldo);
 document.getElementById("outrasDespesas").addEventListener("input", atualizarSaldo);
-
+document.getElementById("transporte").addEventListener("input", atualizarSaldo);
+ 
 const pinvestInput = document.getElementById("pinvest");
 const pinvestOutput = document.getElementById("pinvestOutput");
+ 
 
 pinvestInput.addEventListener("change", () => {
   pinvestOutput.innerText = pinvestInput.value;
@@ -28,21 +30,22 @@ function atualizarSaldo() {
   var mercado = parseFloat(document.getElementById("mercado").value) || 0;
   var cartaoCredito = parseFloat(document.getElementById("cartaoCredito").value) || 0;
   var outrasDespesas = parseFloat(document.getElementById("outrasDespesas").value) || 0;
+  var transporte = parseFloat(document.getElementById("transporte").value) || 0;
+
+ 
 
   // Recupera o percentual de investimento
   var percentualInvestimento = parseFloat(document.getElementById("pinvest").value) || 0;
-
   // Realiza as operações de adição e subtração
   var totalReceitas = salario + outrasReceitas;
-  var totalDespesas = agua + aluguel + energia + internet + mercado + cartaoCredito + outrasDespesas;
+  var totalDespesas = agua + aluguel + energia + internet + mercado + cartaoCredito + outrasDespesas + transporte;
   var saldo = totalReceitas - totalDespesas;
-
   // Calcula o saldo de investimento com base no percentual definido pelo usuário
   var saldoInvestimento = saldo * (percentualInvestimento / 100);
-
+ 
   // Subtrai o saldo de investimento do saldo total
   saldo -= saldoInvestimento;
-
+ 
   // Exibe os resultados nos campos de saída correspondentes
   document.getElementById("saldo").value = saldo.toFixed(2);
   document.getElementById("saldoInvestimento").value = saldoInvestimento.toFixed(2);
@@ -60,9 +63,11 @@ function limparCampos() {
   document.getElementById("cartaoCredito").value = "";
   document.getElementById("outrasDespesas").value = "";
   document.getElementById("saldo").value = "";
-document.getElementById("saldoInvestimento").value = "placeholder";
-} 
+  document.getElementById("transporte").value = "";  
+  document.getElementById("saldoInvestimento").value = "";  
+}
+
 // Chama a função atualizarSaldo ao carregar a página
-atualizarSaldo(); 
+atualizarSaldo();
 // Adiciona o evento de click ao botão "Limpar"
 document.getElementById("limpar").addEventListener("click", limparCampos);
