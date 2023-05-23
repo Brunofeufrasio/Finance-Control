@@ -29,6 +29,9 @@ div {
     margin: 10px;
     text-align:left;
     padding: 10px;
+    max-width: 900px;
+    display: block;
+    margin: auto;
 }
 
 .corpo {
@@ -81,15 +84,18 @@ button {
     height: 30px;
     border-radius: 5px;  
     cursor: pointer;
+   margin-top: 20px;
 }
 
 label {
     color: greenyellow; 
+    font-size: 20px;
 }
 
 input {
     display: inline-block;
     margin-bottom: 20px;
+    font-size: 20px;
 }
 
 footer {
