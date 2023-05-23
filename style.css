@@ -78,4 +78,56 @@ body {
     color: #fff;
     text-align: center;
   }
+
+  /* Estilos gerais */
+
+/* Estilos para dispositivos móveis */
+@media only screen and (max-width: 767px) {
+  /* Estilos para dispositivos móveis */
+
+  body {
+    font-size: 14px;
+  }
+
+  header {
+    padding: 10px;
+  }
+
+  main {
+    padding: 10px;
+  }
+
+  #transaction-form input[type="text"],
+  #transaction-form input[type="number"],
+  #transaction-form button,
+  #expense-form input[type="text"],
+  #expense-form input[type="number"],
+  #expense-form button {
+    margin-top: 5px;
+  }
+
+  footer {
+    padding: 5px;
+  }
+
+  /* Estilos para alinhar e posicionar palavras e inputs */
+
+  #summary {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .summary-item {
+    flex-basis: 100%;
+  }
+
+  #summary h3,
+  #transaction-form label,
+  #expense-form label {
+    margin-top: 5px;
+    display: block; /* Adiciona quebra de linha */
+  }
+}
+
   
