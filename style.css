@@ -1,8 +1,14 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+
 /* Estilos globais */
 body {
-    font-family: Arial, sans-serif;
+  font-family: 'Montserrat', sans-serif;
     margin: 0;
     padding: 0;
+  }
+
+  h1 {
+    text-align: center;
   }
   
   /* Estilos para o cabeçalho */
@@ -14,6 +20,7 @@ body {
   
   /* Estilos para o conteúdo principal */
   main {
+    min-height: calc(100vh - 80px); /* Subtrai a altura do cabeçalho e do rodapé */
     padding: 20px;
   }
   
@@ -62,6 +69,10 @@ body {
   
   /* Estilos para o rodapé */
   footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
     background-color: #333;
     padding: 10px;
     color: #fff;
