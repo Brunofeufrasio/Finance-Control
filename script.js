@@ -1,73 +1,202 @@
-// Adiciona eventos de input aos campos de entrada
-document.getElementById("salario").addEventListener("input", atualizarSaldo);
-document.getElementById("outrasReceitas").addEventListener("input", atualizarSaldo);
-document.getElementById("agua").addEventListener("input", atualizarSaldo);
-document.getElementById("aluguel").addEventListener("input", atualizarSaldo);
-document.getElementById("energia").addEventListener("input", atualizarSaldo);
-document.getElementById("internet").addEventListener("input", atualizarSaldo);
-document.getElementById("mercado").addEventListener("input", atualizarSaldo);
-document.getElementById("cartaoCredito").addEventListener("input", atualizarSaldo);
-document.getElementById("outrasDespesas").addEventListener("input", atualizarSaldo);
-document.getElementById("transporte").addEventListener("input", atualizarSaldo);
- 
-const pinvestInput = document.getElementById("pinvest");
-const pinvestOutput = document.getElementById("pinvestOutput");
- 
+// Variáveis para armazenar dados das transações e despesas
+let transactions = [];
+let expenses = [];
 
-pinvestInput.addEventListener("change", () => {
-  pinvestOutput.innerText = pinvestInput.value;
-  atualizarSaldo();
+// Selecionar elementos HTML
+const transactionList = document.getElementById('transaction-list');
+const transactionForm = document.getElementById('transaction-form');
+const descriptionInput = document.getElementById('description');
+const amountInput = document.getElementById('amount');
+const incomeDisplay = document.getElementById('income-value');
+const expenseDisplay = document.getElementById('expense-value');
+const balanceDisplay = document.getElementById('balance-value');
+const expenseList = document.getElementById('expense-list');
+const expenseForm = document.getElementById('expense-form');
+const expenseDescriptionInput = document.getElementById('expense-description');
+const expenseAmountInput = document.getElementById('expense-amount');
+
+// Função para adicionar uma transação
+function addTransaction(description, amount) {
+  const transaction = {
+    description,
+    amount
+  };
+  transactions.push(transaction);
+}
+
+// Função para adicionar uma despesa
+function addExpense(description, amount) {
+  const expense = {
+    description,
+    amount
+  };
+  expenses.push(expense);
+}
+
+// Função para exibir as transações na lista
+function displayTransactions() {
+  transactionList.innerHTML = '';
+  transactions.forEach(transaction => {
+    const listItem = document.createElement('div');
+    listItem.classList.add('transaction-item');
+    listItem.innerHTML = `
+      <p>${transaction.description}</p>
+      <p>${formatCurrency(transaction.amount)}</p>
+    `;
+    transactionList.appendChild(listItem);
+  });
+}
+
+// Função para exibir as despesas na lista
+function displayExpenses() {
+  expenseList.innerHTML = '';
+  expenses.forEach(expense => {
+    const listItem = document.createElement('div');
+    listItem.classList.add('transaction-item');
+    listItem.innerHTML = `
+      <p>${expense.description}</p>
+      <p>${formatCurrency(expense.amount)}</p>
+    `;
+    expenseList.appendChild(listItem);
+  });
+}
+
+// Função para atualizar o resumo financeiro
+function updateSummary() {
+  let income = 0;
+  let expense = 0;
+  transactions.forEach(transaction => {
+    if (transaction.amount > 0) {
+      income += transaction.amount;
+    } else {
+      expense -= transaction.amount;
+    }
+  });
+
+  incomeDisplay.textContent = formatCurrency(income);
+  expenseDisplay.textContent = formatCurrency(expense);
+  balanceDisplay.textContent = formatCurrency(income - expense);
+}
+
+// Função para formatar valores monetários
+function formatCurrency(value) {
+  return `R$ ${value.toFixed(2)}`;
+}
+
+// Evento de envio do formulário de transação
+transactionForm.addEventListener('submit', e => {
+  e.preventDefault();
+
+  const description = descriptionInput.value;
+  const amount = parseFloat(amountInput.value);
+
+  if (description.trim() !== '' && !isNaN(amount)) {
+    addTransaction(description, amount);
+    displayTransactions();
+    updateSummary();
+
+    // Limpar campos do formulário
+    descriptionInput.value = '';
+    amountInput.value = '';
+  }
 });
 
-function atualizarSaldo() {
-  // Recupera os valores dos campos de entrada
-  var salario = parseFloat(document.getElementById("salario").value) || 0;
-  var outrasReceitas = parseFloat(document.getElementById("outrasReceitas").value) || 0;
-  var agua = parseFloat(document.getElementById("agua").value) || 0;
-  var aluguel = parseFloat(document.getElementById("aluguel").value) || 0;
-  var energia = parseFloat(document.getElementById("energia").value) || 0;
-  var internet = parseFloat(document.getElementById("internet").value) || 0;
-  var mercado = parseFloat(document.getElementById("mercado").value) || 0;
-  var cartaoCredito = parseFloat(document.getElementById("cartaoCredito").value) || 0;
-  var outrasDespesas = parseFloat(document.getElementById("outrasDespesas").value) || 0;
-  var transporte = parseFloat(document.getElementById("transporte").value) || 0;
+// Evento de envio do formulário de despesa
+expenseForm.addEventListener('submit', e => {
+  e.preventDefault();
 
- 
+  const description = expenseDescriptionInput.value;
+  const amount = parseFloat(expenseAmountInput.value);
 
-  // Recupera o percentual de investimento
-  var percentualInvestimento = parseFloat(document.getElementById("pinvest").value) || 0;
-  // Realiza as operações de adição e subtração
-  var totalReceitas = salario + outrasReceitas;
-  var totalDespesas = agua + aluguel + energia + internet + mercado + cartaoCredito + outrasDespesas + transporte;
-  var saldo = totalReceitas - totalDespesas;
-  // Calcula o saldo de investimento com base no percentual definido pelo usuário
-  var saldoInvestimento = saldo * (percentualInvestimento / 100);
- 
-  // Subtrai o saldo de investimento do saldo total
-  saldo -= saldoInvestimento;
- 
-  // Exibe os resultados nos campos de saída correspondentes
-  document.getElementById("saldo").value = saldo.toFixed(2);
-  document.getElementById("saldoInvestimento").value = saldoInvestimento.toFixed(2);
-}
+  if (description.trim() !== '' && !isNaN(amount)) {
+    addExpense(description, -amount);
+    displayExpenses();
+    updateSummary();
 
-function limparCampos() {
-  // redefine os valores dos campos de entrada e saída
-  document.getElementById("salario").value = "";
-  document.getElementById("outrasReceitas").value = "";
-  document.getElementById("agua").value = "";
-  document.getElementById("aluguel").value = "";
-  document.getElementById("energia").value = "";
-  document.getElementById("internet").value = "";
-  document.getElementById("mercado").value = "";
-  document.getElementById("cartaoCredito").value = "";
-  document.getElementById("outrasDespesas").value = "";
-  document.getElementById("saldo").value = "";
-  document.getElementById("transporte").value = "";  
-  document.getElementById("saldoInvestimento").value = "";  
-}
+    // Limpar campos do formulário
+    expenseDescriptionInput.value = '';
+    expenseAmountInput.value = '';
+  }
+});
 
-// Chama a função atualizarSaldo ao carregar a página
-atualizarSaldo();
-// Adiciona o evento de click ao botão "Limpar"
-document.getElementById("limpar").addEventListener("click", limparCampos);
+// Inicializar o site exibindo as transações, despesas e o resumo
+displayTransactions();
+displayExpenses();
+updateSummary();
+
+// ...
+
+// Função para adicionar uma despesa
+function addExpense(description, amount) {
+    const expense = {
+      description,
+      amount
+    };
+    expenses.push(expense);
+  }
+  
+  // Função para exibir as despesas na lista
+  function displayExpenses() {
+    expenseList.innerHTML = '';
+    expenses.forEach(expense => {
+      const listItem = document.createElement('div');
+      listItem.classList.add('transaction-item');
+      listItem.innerHTML = `
+        <p>${expense.description}</p>
+        <p>${formatCurrency(expense.amount)}</p>
+      `;
+      expenseList.appendChild(listItem);
+    });
+  }
+  
+  // Função para atualizar o resumo financeiro
+  function updateSummary() {
+    let income = 0;
+    let expense = 0;
+  
+    transactions.forEach(transaction => {
+      if (transaction.amount > 0) {
+        income += transaction.amount;
+      }
+    });
+  
+    expenses.forEach(expenseItem => {
+      expense += expenseItem.amount;
+    });
+  
+    incomeDisplay.textContent = formatCurrency(income);
+    expenseDisplay.textContent = formatCurrency(expense);
+    balanceDisplay.textContent = formatCurrency(income - Math.abs(expense)); // Subtrai o valor absoluto das despesas da receita
+  
+    // Adicionei um tratamento para exibir o saldo em vermelho caso seja negativo
+    if (income - Math.abs(expense) < 0) {
+      balanceDisplay.style.color = 'red';
+    } else {
+      balanceDisplay.style.color = 'black';
+    }
+  }
+  
+  // ...
+  
+  // Evento de envio do formulário de despesa
+  expenseForm.addEventListener('submit', e => {
+    e.preventDefault();
+  
+    const description = expenseDescriptionInput.value;
+    const amount = parseFloat(expenseAmountInput.value);
+  
+    if (description.trim() !== '' && !isNaN(amount)) {
+      addExpense(description, -amount); // Subtrai o valor da despesa da receita
+      displayExpenses();
+      updateSummary();
+  
+      // Limpar campos do formulário
+      expenseDescriptionInput.value = '';
+      expenseAmountInput.value = '';
+    }
+  });
+  
+  // ...
+  
+  // ...
+  
