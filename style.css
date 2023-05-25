@@ -73,7 +73,6 @@ body {
   
   /* Estilos para o rodapé */
   footer {
-    position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
@@ -83,7 +82,7 @@ body {
     text-align: center;
     font-style: italic;
     font-size: 12px;
-    margin-top: 50px;
+  
   }
   /* Estilos para dispositivos de tela grande */
 @media only screen and (min-width: 768px) {
