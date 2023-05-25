@@ -5,6 +5,7 @@ body {
   font-family: 'Montserrat', sans-serif;
     margin: 0;
     padding: 0;
+    
   }
 
   h1 {
@@ -22,11 +23,14 @@ body {
   main {
     min-height: calc(100vh - 80px); /* Subtrai a altura do cabeçalho e do rodapé */
     padding: 20px;
+    max-width: 900px;
+   
   }
   
   /* Estilos para a seção de transações */
   #transactions {
     margin-bottom: 20px;
+    
   }
   
   #transaction-list {
@@ -78,6 +82,13 @@ body {
     color: #fff;
     text-align: center;
   }
+  /* Estilos para dispositivos de tela grande */
+@media only screen and (min-width: 768px) {
+  main {
+    margin: 0 auto; /* Centraliza horizontalmente */
+  }
+}
+
 
   /* Estilos gerais */
 
