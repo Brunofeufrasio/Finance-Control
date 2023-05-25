@@ -3,10 +3,10 @@
 /* Estilos globais */
 body {
   font-family: 'Montserrat', sans-serif;
-    margin: 0;
-    padding: 0;
-    
-  }
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Oculta a rolagem horizontal */
+}
 
   h1 {
     text-align: center;
@@ -82,6 +82,7 @@ body {
     text-align: center;
     font-style: italic;
     font-size: 12px;
+
   
   }
   /* Estilos para dispositivos de tela grande */
