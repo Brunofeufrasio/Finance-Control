@@ -224,47 +224,66 @@ function displayExpenses() {
   });
 }
 
-document.getElementById("description").addEventListener("change", function() {
-  var descriptionInput = document.getElementById("custom-description-input");
-  if (this.value === "Outros") {
-    descriptionInput.disabled = false;
-    descriptionInput.setAttribute("required", "required");
-  } else {
-    descriptionInput.disabled = true;
-    descriptionInput.removeAttribute("required");
-  }
-});
+// Obtém os elementos select para descrição
+var descricaoSelect = document.getElementById('description');
+var expenseDescricaoSelect = document.getElementById('expense-description');
 
-document.getElementById("expense-description").addEventListener("change", function() {
-  var expenseDescriptionInput = document.getElementById("custom-expense-description-input");
-  if (this.value === "Descrição Personalisada") {
-    expenseDescriptionInput.disabled = false;
-    expenseDescriptionInput.setAttribute("required", "required");
-  } else {
-    expenseDescriptionInput.disabled = true;
-    expenseDescriptionInput.removeAttribute("required");
-  }
-});
+// Adiciona um evento de mudança ao select de receitas
+descricaoSelect.addEventListener('change', function() {
+  var selectedValue = this.value;
 
+  if (selectedValue === 'Personalizada') {
+    var novaDescricao = prompt('Digite a descrição:');
 
-function showCustomDescription() {
-  var descriptionSelect = document.getElementById("description");
-  var customDescriptionInput = document.getElementById("custom-description-input");
+    if (novaDescricao) {
+      var optionPersonalizada = document.createElement('option');
+      optionPersonalizada.value = novaDescricao;
+      optionPersonalizada.text = novaDescricao;
 
-  if (descriptionSelect.value === "Outros") {
-    var customDescription = prompt("Digite a descrição personalizada:");
-    if (customDescription) {
-      var option = document.createElement("option");
-      option.value = customDescription;
-      option.text = customDescription;
-      descriptionSelect.add(option);
-      descriptionSelect.value = customDescription;
-      customDescriptionInput.value = customDescription;
+      var deleteIcon = document.createElement('span');
+      deleteIcon.innerHTML = '<i class="fas fa-trash-alt"></i>';
+
+      deleteIcon.addEventListener('click', function() {
+        optionPersonalizada.remove();
+      });
+
+      optionPersonalizada.appendChild(deleteIcon);
+
+      descricaoSelect.appendChild(optionPersonalizada);
+
+      optionPersonalizada.selected = true;
     } else {
-      descriptionSelect.value = "";
-      customDescriptionInput.value = "";
+      descricaoSelect.selectedIndex = 0;
     }
-  } else {
-    customDescriptionInput.value = descriptionSelect.value;
   }
-}
+});
+
+// Adiciona um evento de mudança ao select de despesas
+expenseDescricaoSelect.addEventListener('change', function() {
+  var selectedValue = this.value;
+
+  if (selectedValue === 'Personalizada') {
+    var novaDescricao = prompt('Digite a descrição:');
+
+    if (novaDescricao) {
+      var optionPersonalizada = document.createElement('option');
+      optionPersonalizada.value = novaDescricao;
+      optionPersonalizada.text = novaDescricao;
+
+      var deleteIcon = document.createElement('span');
+      deleteIcon.innerHTML = '<i class="fas fa-trash-alt"></i>';
+
+      deleteIcon.addEventListener('click', function() {
+        optionPersonalizada.remove();
+      });
+
+      optionPersonalizada.appendChild(deleteIcon);
+
+      expenseDescricaoSelect.appendChild(optionPersonalizada);
+
+      optionPersonalizada.selected = true;
+    } else {
+      expenseDescricaoSelect.selectedIndex = 0;
+    }
+  }
+});
