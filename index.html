@@ -18,14 +18,23 @@
       <div id="transaction-list">
         <!-- Aqui serão exibidas as transações -->
       </div>
-      <form id="transaction-form">
-        <label for="description">Descrição</label>
-        <input type="text" id="description" required>
-        <label for="amount">Valor</label>
-        <input type="number" id="amount" required>
-        <button type="submit"><i class="fas fa-plus"></i> Adicionar</button>
-      </form>
-    </section>
+      <section id="transaction-form">
+        <form>
+          <label for="description">Descrição</label>
+          <select id="description" class="input-field" required>
+            <option value="Salario">Salário</option>
+            <option value="Freelancer">Freelancer</option>
+            <option value="PIS">PIS</option>
+            <option value="DecimoTerceiro">Décimo Terceiro</option>
+            <option value="PPR">PPR</option>
+            <option value="Outros">Outros</option>
+          </select>
+          <label for="amount">Valor</label>
+          <input type="number" id="amount" class="input-field" required>
+          <button type="submit"><i class="fas fa-plus"></i> Adicionar</button>
+        </form>
+      </section>
+      
 
     <section id="expenses">
       <h2><i class="fas fa-chart-line fa-flip-vertical"></i></i> Despesas</h2>
@@ -34,12 +43,20 @@
       </div>
       <form id="expense-form">
         <label for="expense-description">Descrição</label>
-        <input type="text" id="expense-description" required>
+        <select id="expense-description" class="input-field" required>
+          <option value="Moradia">Água</option>
+          <option value="Moradia">Energia</option>
+          <option value="Moradia">Moradia</option>
+          <option value="Viagem">Viagem</option>
+          <option value="Transporte">Transporte</option>
+          <option value="Mercado">Mercado</option>
+          <option value="Mercado">Outros</option>
+        </select>
         <label for="expense-amount">Valor</label>
-        <input type="number" id="expense-amount" required>
+        <input type="number" id="expense-amount" class="input-field" required>
         <button type="submit"><i class="fas fa-plus"></i> Adicionar</button>
       </form>
-    </section>
+      
 
     <section id="summary">
       <h2><i class="fas fa-chart-pie"></i> Resumo</h2>
