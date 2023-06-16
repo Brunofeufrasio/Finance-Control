@@ -224,4 +224,47 @@ function displayExpenses() {
   });
 }
 
-  
+document.getElementById("description").addEventListener("change", function() {
+  var descriptionInput = document.getElementById("custom-description-input");
+  if (this.value === "Outros") {
+    descriptionInput.disabled = false;
+    descriptionInput.setAttribute("required", "required");
+  } else {
+    descriptionInput.disabled = true;
+    descriptionInput.removeAttribute("required");
+  }
+});
+
+document.getElementById("expense-description").addEventListener("change", function() {
+  var expenseDescriptionInput = document.getElementById("custom-expense-description-input");
+  if (this.value === "Descrição Personalisada") {
+    expenseDescriptionInput.disabled = false;
+    expenseDescriptionInput.setAttribute("required", "required");
+  } else {
+    expenseDescriptionInput.disabled = true;
+    expenseDescriptionInput.removeAttribute("required");
+  }
+});
+
+
+function showCustomDescription() {
+  var descriptionSelect = document.getElementById("description");
+  var customDescriptionInput = document.getElementById("custom-description-input");
+
+  if (descriptionSelect.value === "Outros") {
+    var customDescription = prompt("Digite a descrição personalizada:");
+    if (customDescription) {
+      var option = document.createElement("option");
+      option.value = customDescription;
+      option.text = customDescription;
+      descriptionSelect.add(option);
+      descriptionSelect.value = customDescription;
+      customDescriptionInput.value = customDescription;
+    } else {
+      descriptionSelect.value = "";
+      customDescriptionInput.value = "";
+    }
+  } else {
+    customDescriptionInput.value = descriptionSelect.value;
+  }
+}
