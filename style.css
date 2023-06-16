@@ -147,6 +147,7 @@ body {
 
   main {
     padding: 20px;
+   padding-left: 20px;
   }
 
   #transaction-form input[type="text"],
