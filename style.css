@@ -11,10 +11,14 @@ body {
   h1 {
     text-align: center;
   }
+
+  h2 {
+    color: rgb(68, 68, 68);
+  }
   
   /* Estilos para o cabeçalho */
   header {
-    background-color: #333;
+    background-color: #424242;
     padding: 20px;
     color: #fff;
   }
@@ -130,8 +134,6 @@ body {
 
   body {
     font-size: 16px;
-  
-    
   }
 
   .input-field {
