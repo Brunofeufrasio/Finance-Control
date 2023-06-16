@@ -70,6 +70,23 @@ body {
   #expense-form button {
     margin-top: 10px;
   }
+
+  #income-display {
+    color: green; /* Define a cor verde para as receitas */
+  }
+  
+  #expense-display {
+    color: red; /* Define a cor vermelha para as despesas */
+  }
+
+  .income {
+    color: green;
+  }
+  
+  .expense {
+    color: red;
+  }
+  
   
   /* Estilos para o rodapé */
   footer {

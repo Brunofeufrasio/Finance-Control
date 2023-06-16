@@ -196,7 +196,32 @@ function addExpense(description, amount) {
     }
   });
   
-  // ...
-  
-  // ...
+ // Função para exibir as transações na lista
+function displayTransactions() {
+  transactionList.innerHTML = '';
+  transactions.forEach(transaction => {
+    const listItem = document.createElement('div');
+    listItem.classList.add('transaction-item');
+    listItem.innerHTML = `
+      <p>${transaction.description}</p>
+      <p class="${transaction.amount > 0 ? 'income' : 'expense'}">${formatCurrency(transaction.amount)}</p>
+    `;
+    transactionList.appendChild(listItem);
+  });
+}
+
+// Função para exibir as despesas na lista
+function displayExpenses() {
+  expenseList.innerHTML = '';
+  expenses.forEach(expense => {
+    const listItem = document.createElement('div');
+    listItem.classList.add('transaction-item');
+    listItem.innerHTML = `
+      <p>${expense.description}</p>
+      <p class="expense">${formatCurrency(expense.amount)}</p>
+    `;
+    expenseList.appendChild(listItem);
+  });
+}
+
   
