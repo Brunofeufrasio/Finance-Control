@@ -129,15 +129,14 @@ body {
   /* Estilos para dispositivos móveis */
 
   body {
-    font-size: 18px;
+    font-size: 20px;
   
     
   }
 
   .input-field {
     width: 120px;
-    padding: 2px;
-    
+    padding: 5px;
 
   }
 
