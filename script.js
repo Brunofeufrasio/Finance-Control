@@ -41,7 +41,7 @@ function displayTransactions() {
     listItem.classList.add('transaction-item');
     listItem.innerHTML = `
       <p>${transaction.description}</p>
-      <p>${formatCurrency(transaction.amount)}</p>
+      <p class="${transaction.amount > 0 ? 'income' : 'expense'}">${formatCurrency(transaction.amount)}</p>
     `;
     transactionList.appendChild(listItem);
   });
@@ -55,7 +55,7 @@ function displayExpenses() {
     listItem.classList.add('transaction-item');
     listItem.innerHTML = `
       <p>${expense.description}</p>
-      <p>${formatCurrency(expense.amount)}</p>
+      <p class="expense">${formatCurrency(expense.amount)}</p>
     `;
     expenseList.appendChild(listItem);
   });
@@ -65,17 +65,27 @@ function displayExpenses() {
 function updateSummary() {
   let income = 0;
   let expense = 0;
+
   transactions.forEach(transaction => {
     if (transaction.amount > 0) {
       income += transaction.amount;
-    } else {
-      expense -= transaction.amount;
     }
+  });
+
+  expenses.forEach(expenseItem => {
+    expense += expenseItem.amount;
   });
 
   incomeDisplay.textContent = formatCurrency(income);
   expenseDisplay.textContent = formatCurrency(expense);
-  balanceDisplay.textContent = formatCurrency(income - expense);
+  balanceDisplay.textContent = formatCurrency(income - Math.abs(expense)); // Subtrai o valor absoluto das despesas da receita
+
+  // Adicionei um tratamento para exibir o saldo em vermelho caso seja negativo
+  if (income - Math.abs(expense) < 0) {
+    balanceDisplay.style.color = 'red';
+  } else {
+    balanceDisplay.style.color = 'black';
+  }
 }
 
 // Função para formatar valores monetários
@@ -109,7 +119,7 @@ expenseForm.addEventListener('submit', e => {
   const amount = parseFloat(expenseAmountInput.value);
 
   if (description.trim() !== '' && !isNaN(amount)) {
-    addExpense(description, -amount);
+    addExpense(description, -amount); // Subtrai o valor da despesa da receita
     displayExpenses();
     updateSummary();
 
@@ -123,106 +133,6 @@ expenseForm.addEventListener('submit', e => {
 displayTransactions();
 displayExpenses();
 updateSummary();
-
-// ...
-
-// Função para adicionar uma despesa
-function addExpense(description, amount) {
-    const expense = {
-      description,
-      amount
-    };
-    expenses.push(expense);
-  }
-  
-  // Função para exibir as despesas na lista
-  function displayExpenses() {
-    expenseList.innerHTML = '';
-    expenses.forEach(expense => {
-      const listItem = document.createElement('div');
-      listItem.classList.add('transaction-item');
-      listItem.innerHTML = `
-        <p>${expense.description}</p>
-        <p>${formatCurrency(expense.amount)}</p>
-      `;
-      expenseList.appendChild(listItem);
-    });
-  }
-  
-  // Função para atualizar o resumo financeiro
-  function updateSummary() {
-    let income = 0;
-    let expense = 0;
-  
-    transactions.forEach(transaction => {
-      if (transaction.amount > 0) {
-        income += transaction.amount;
-      }
-    });
-  
-    expenses.forEach(expenseItem => {
-      expense += expenseItem.amount;
-    });
-  
-    incomeDisplay.textContent = formatCurrency(income);
-    expenseDisplay.textContent = formatCurrency(expense);
-    balanceDisplay.textContent = formatCurrency(income - Math.abs(expense)); // Subtrai o valor absoluto das despesas da receita
-  
-    // Adicionei um tratamento para exibir o saldo em vermelho caso seja negativo
-    if (income - Math.abs(expense) < 0) {
-      balanceDisplay.style.color = 'red';
-    } else {
-      balanceDisplay.style.color = 'black';
-    }
-  }
-  
-  // ...
-  
-  // Evento de envio do formulário de despesa
-  expenseForm.addEventListener('submit', e => {
-    e.preventDefault();
-  
-    const description = expenseDescriptionInput.value;
-    const amount = parseFloat(expenseAmountInput.value);
-  
-    if (description.trim() !== '' && !isNaN(amount)) {
-      addExpense(description, -amount); // Subtrai o valor da despesa da receita
-      displayExpenses();
-      updateSummary();
-  
-      // Limpar campos do formulário
-      expenseDescriptionInput.value = '';
-      expenseAmountInput.value = '';
-    }
-  });
-  
- // Função para exibir as transações na lista
-function displayTransactions() {
-  transactionList.innerHTML = '';
-  transactions.forEach(transaction => {
-    const listItem = document.createElement('div');
-    listItem.classList.add('transaction-item');
-    listItem.innerHTML = `
-      <p>${transaction.description}</p>
-      <p class="${transaction.amount > 0 ? 'income' : 'expense'}">${formatCurrency(transaction.amount)}</p>
-    `;
-    transactionList.appendChild(listItem);
-  });
-}
-
-// Função para exibir as despesas na lista
-function displayExpenses() {
-  expenseList.innerHTML = '';
-  expenses.forEach(expense => {
-    const listItem = document.createElement('div');
-    listItem.classList.add('transaction-item');
-    listItem.innerHTML = `
-      <p>${expense.description}</p>
-      <p class="expense">${formatCurrency(expense.amount)}</p>
-    `;
-    expenseList.appendChild(listItem);
-  });
-}
 
 // Obtém os elementos select para descrição
 var descricaoSelect = document.getElementById('description');
@@ -287,3 +197,47 @@ expenseDescricaoSelect.addEventListener('change', function() {
     }
   }
 });
+
+// Função para exibir as transações na lista
+function displayTransactions() {
+  transactionList.innerHTML = '';
+  transactions.forEach((transaction, index) => {
+    const listItem = document.createElement('div');
+    listItem.classList.add('transaction-item');
+    listItem.innerHTML = `
+      <p>${transaction.description}</p>
+      <p class="${transaction.amount > 0 ? 'income' : 'expense'}">${formatCurrency(transaction.amount)}</p>
+      <span class="delete-icon" onclick="deleteTransaction(${index})"><i class="fas fa-trash-alt"></i></span>
+    `;
+    transactionList.appendChild(listItem);
+  });
+}
+
+// Função para exibir as despesas na lista
+function displayExpenses() {
+  expenseList.innerHTML = '';
+  expenses.forEach((expense, index) => {
+    const listItem = document.createElement('div');
+    listItem.classList.add('transaction-item');
+    listItem.innerHTML = `
+      <p>${expense.description}</p>
+      <p class="expense">${formatCurrency(expense.amount)}</p>
+      <span class="delete-icon" onclick="deleteExpense(${index})"><i class="fas fa-trash-alt"></i></span>
+    `;
+    expenseList.appendChild(listItem);
+  });
+}
+
+// Função para excluir uma transação
+function deleteTransaction(index) {
+  transactions.splice(index, 1);
+  displayTransactions();
+  updateSummary();
+}
+
+// Função para excluir uma despesa
+function deleteExpense(index) {
+  expenses.splice(index, 1);
+  displayExpenses();
+  updateSummary();
+}
