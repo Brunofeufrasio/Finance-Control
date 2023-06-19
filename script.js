@@ -38,9 +38,9 @@ function displayTransactions() {
     listItem.innerHTML = `
       <div class="transaction-description">
         <p>${transaction.description}</p>
+        <p class="transaction-amount ${transaction.amount > 0 ? 'income' : 'expense'}">${formatCurrency(transaction.amount)}</p>
         <span class="delete-icon" onclick="deleteTransaction(${index})"><i class="fas fa-trash-alt"></i></span>
       </div>
-      <p class="${transaction.amount > 0 ? 'income' : 'expense'}">${formatCurrency(transaction.amount)}</p>
     `;
     transactionList.appendChild(listItem);
   });
@@ -55,9 +55,9 @@ function displayExpenses() {
     listItem.innerHTML = `
       <div class="transaction-description">
         <p>${expense.description}</p>
+        <p class="transaction-amount expense">${formatCurrency(expense.amount)}</p>
         <span class="delete-icon" onclick="deleteExpense(${index})"><i class="fas fa-trash-alt"></i></span>
       </div>
-      <p class="expense">${formatCurrency(expense.amount)}</p>
     `;
     expenseList.appendChild(listItem);
   });
@@ -110,7 +110,14 @@ transactionForm.addEventListener('submit', (e) => {
   e.preventDefault();
   const description = document.getElementById('description').value;
   const amount = parseFloat(document.getElementById('amount').value);
-  addTransaction(description, amount);
+  if (description === 'Personalizada') {
+    const customDescription = prompt('Digite a descrição:');
+    if (customDescription !== null && customDescription.trim() !== '') {
+      addTransaction(customDescription, amount);
+    }
+  } else {
+    addTransaction(description, amount);
+  }
   displayTransactions();
   updateSummary();
   transactionForm.reset();
@@ -121,7 +128,14 @@ expenseForm.addEventListener('submit', (e) => {
   e.preventDefault();
   const description = document.getElementById('expense-description').value;
   const amount = parseFloat(document.getElementById('expense-amount').value);
-  addExpense(description, amount);
+  if (description === 'Personalizada') {
+    const customDescription = prompt('Digite a descrição:');
+    if (customDescription !== null && customDescription.trim() !== '') {
+      addExpense(customDescription, amount);
+    }
+  } else {
+    addExpense(description, amount);
+  }
   displayExpenses();
   updateSummary();
   expenseForm.reset();
@@ -134,7 +148,44 @@ function initialize() {
   updateSummary();
 }
 
+document.addEventListener("DOMContentLoaded", function() {
+  const descriptionSelect = document.getElementById("description");
+  const expenseDescriptionSelect = document.getElementById("expense-description");
+
+  descriptionSelect.addEventListener("change", function() {
+    const selectedOption = this.value;
+    if (selectedOption === "Personalizada") {
+      const customDescription = prompt("Digite a descrição personalizada:");
+      if (customDescription) {
+        const customOption = document.createElement("option");
+        customOption.value = customDescription;
+        customOption.text = customDescription;
+        descriptionSelect.appendChild(customOption);
+        descriptionSelect.value = customDescription;
+      } else {
+        descriptionSelect.value = "";
+      }
+    }
+  });
+
+  expenseDescriptionSelect.addEventListener("change", function() {
+    const selectedOption = this.value;
+    if (selectedOption === "Personalizada") {
+      const customDescription = prompt("Digite a descrição personalizada:");
+      if (customDescription) {
+        const customOption = document.createElement("option");
+        customOption.value = customDescription;
+        customOption.text = customDescription;
+        expenseDescriptionSelect.appendChild(customOption);
+        expenseDescriptionSelect.value = customDescription;
+      } else {
+        expenseDescriptionSelect.value = "";
+      }
+    }
+  });
+
+  // Restante do seu código JavaScript...
+});
+
 // Inicializa a página
 initialize();
-
-

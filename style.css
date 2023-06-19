@@ -113,10 +113,42 @@ body {
     color: red;
   }
 
+  .expense {
+    display: flex;
+    align-items: center;
+  }
   
+  .expense-amount {
+    margin-right: 5px;
+  }
   
+  .delete-icon {
+    margin-left: 5px;
+  }
   
+  .transaction-item {
+    display: flex;
+    align-items: center;
+  }
   
+  .transaction-description {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+  }
+  
+  .transaction-description p {
+    margin-right: 10px;
+  }
+  
+  .delete-icon {
+    margin-left: 10px;
+    cursor: pointer;
+  }
+  
+
+  
+
   /* Estilos para o rodapé */
   footer {
     left: 0;
