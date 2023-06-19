@@ -45,7 +45,7 @@ body {
 
 
   .input-field {
-    width: 100px;
+    width: 30%;
     font-size: 16px;
 
   }
@@ -61,6 +61,18 @@ body {
   #transaction-list {
     margin-bottom: 10px;
   }
+
+  .transaction-description p {
+    font-size: 16px;
+    margin: 1px;
+    padding: 1px;
+  }
+
+  .delete-icon {
+    font-size: 16px;
+  }
+  
+  
   
   #transaction-form input[type="text"],
   #transaction-form input[type="number"],

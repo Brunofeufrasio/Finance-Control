@@ -183,9 +183,11 @@ document.addEventListener("DOMContentLoaded", function() {
       }
     }
   });
-
+  
   // Restante do seu código JavaScript...
 });
+
+
 
 // Inicializa a página
 initialize();

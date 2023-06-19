@@ -23,18 +23,26 @@
           <label for="description">Descrição</label>
           <select id="description" class="input-field" required>
             <option value="Salario">Salário</option>
+            <option value="Renda de aluguel">Renda de aluguel</option>
+            <option value="Retorno Investimentos"> Retorno Investimentos</option>
+            <option value="Pensão">Pensão</option>
+            <option value="Vale alimentação">Vale alimentação</option>
+            <option value="Benefícios sociais">Benefícios sociais</option>
             <option value="Freelancer">Freelancer</option>
-            <option value="PIS">PIS</option>
+            <option value="Vendas de produtos">Vendas de produtos</option>
             <option value="DecimoTerceiro">Décimo Terceiro</option>
+            <option value="Férias">Férias</option>
+            <option value="Prêmios">Prêmios</option>
+            <option value="Reembolsos">Reembolsos</option>
+            <option value="Doações">Doações</option>
             <option value="PPR">PPR</option>
             <option value="Personalizada" style="background-color: gray; color: white;">Add Descrição</option>
           </select>
           <label for="amount">Valor</label>
-          <input type="number" id="amount" class="input-field" required>
+          <input type="number" id="amount" class="input-field" style="width: 15%;" required>
           <button type="submit" class="botao"><i class="fas fa-plus"></i> Adicionar</button>
         </form>
       </section>
-    </section>
 
     <section id="expenses">
       <h2><i class="fas fa-chart-line fa-flip-vertical" style="color: rgb(255, 41, 41);"></i> Despesas</h2>
@@ -44,16 +52,30 @@
       <form id="expense-form">
         <label for="expense-description">Descrição</label>
         <select id="expense-description" class="input-field" required>
-          <option value="Agua">Água</option>
-          <option value="Energia">Energia</option>
           <option value="Moradia">Moradia</option>
-          <option value="Viagem">Viagem</option>
+          <option value="Alimentacao">Alimentação</option>
           <option value="Transporte">Transporte</option>
-          <option value="Mercado">Mercado</option>
-          <option value="Personalizada" style="background-color: gray; color: white;">Add Descrição</option>
+          <option value="Saude">Saúde</option>
+          <option value="Pensão">Pensão</option>
+          <option value="Educacao">Educação</option>
+          <option value="Entretenimento">Entretenimento</option>
+          <option value="Servicos">Serviços</option>
+          <option value="ContasAgua">Contas de água</option>
+          <option value="ContasLuz">Contas de luz</option>
+          <option value="Gás">Gás de cozinha</option>
+          <option value="Cartao de credito">Cartão de crédito</option>
+          <option value="Impostos">Impostos</option>
+          <option value="Internet">Internet</option>
+          <option value="Recarga celular">Recarga celular</option>
+          <option value="Seguros">Seguros</option>
+          <option value="Manutencao">Manutenção</option>
+          <option value="Roupas">Roupas</option>
+          <option value="Lazer">Lazer</option>
+          <option value="Viagens">Viagens</option>
+          <option value="Personalizada"  style="background-color: gray; color: white;">Add Descrição</option>
         </select>
         <label for="expense-amount">Valor</label>
-        <input type="number" id="expense-amount" class="input-field" required>
+        <input type="number" id="expense-amount" class="input-field" style="width: 15%;" required>
         <button type="submit" class="botao"><i class="fas fa-plus"></i> Adicionar</button>
       </form>
     </section>
