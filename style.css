@@ -211,8 +211,9 @@ body {
   }
 
   .transaction-timestamp {
-      font-size: 10px;
+      font-size: 5px;
       color: grey;
+      font-style: italic;
   }
 
   #transaction-form input[type="text"],
