@@ -43,6 +43,11 @@ body {
     
   }
 
+  .transaction-timestamp {
+    color: grey;
+    font-style: italic;
+  }
+
 
   .input-field {
     width: 30%;
