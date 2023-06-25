@@ -39,7 +39,7 @@ function displayTransactions() {
       <div class="transaction-description">
         <p>${transaction.description}</p>
         <p class="transaction-amount ${transaction.amount > 0 ? 'income' : 'expense'}">${formatCurrency(transaction.amount)}</p>
-        <p class="transaction-timestamp">${transaction.timestamp.toLocaleString()}</p>
+        <p class="transaction-timestamp"style= font-size:12px;>${transaction.timestamp.toLocaleString()}</p>
         <span class="delete-icon" onclick="deleteTransaction(${index})"><i class="fas fa-trash-alt"></i></span>
       </div>
     `;
@@ -57,7 +57,7 @@ function displayExpenses() {
       <div class="transaction-description">
         <p>${expense.description}</p>
         <p class="transaction-amount expense">${formatCurrency(expense.amount)}</p>
-        <p class="transaction-timestamp">${expense.timestamp.toLocaleString()}</p>
+        <p class="transaction-timestamp" style= font-size:12px;>${expense.timestamp.toLocaleString()}</p>
         <span class="delete-icon" onclick="deleteExpense(${index})"><i class="fas fa-trash-alt"></i></span>
       </div>
     `;

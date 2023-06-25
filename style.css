@@ -212,7 +212,6 @@ body {
 
   
   .transaction-timestamp {
-    font-size: 8px; /* Altere o tamanho da fonte conforme necessário */
     color: grey;
     font-style: italic;
   }
