@@ -210,11 +210,13 @@ body {
    padding-left: 20px;
   }
 
+  
   .transaction-timestamp {
-      font-size: 5px;
-      color: grey;
-      font-style: italic;
+    font-size: 8px; /* Altere o tamanho da fonte conforme necessário */
+    color: grey;
+    font-style: italic;
   }
+  
 
   #transaction-form input[type="text"],
   #transaction-form input[type="number"],
