@@ -23,7 +23,7 @@ body {
     background-color: #424242;
     padding: 20px;
     color: #fff;
-    box-shadow:  0px 5px 5px rgba(0, 0, 0, 0.315) ;
+    box-shadow:  0px 10px 5px rgba(0, 0, 0, 0.315) ;
   }
 
   #amount {
