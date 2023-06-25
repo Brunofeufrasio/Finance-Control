@@ -186,7 +186,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   });
   
-  // Restante do seu código JavaScript...
 });
 
 // Função para adicionar uma transação

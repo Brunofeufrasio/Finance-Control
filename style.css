@@ -210,6 +210,11 @@ body {
    padding-left: 20px;
   }
 
+  .transaction-timestamp {
+      font-size: 10px;
+      color: grey;
+  }
+
   #transaction-form input[type="text"],
   #transaction-form input[type="number"],
   #transaction-form button,
