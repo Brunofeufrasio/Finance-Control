@@ -39,6 +39,7 @@ function displayTransactions() {
       <div class="transaction-description">
         <p>${transaction.description}</p>
         <p class="transaction-amount ${transaction.amount > 0 ? 'income' : 'expense'}">${formatCurrency(transaction.amount)}</p>
+        <p class="transaction-timestamp">${transaction.timestamp.toLocaleString()}</p>
         <span class="delete-icon" onclick="deleteTransaction(${index})"><i class="fas fa-trash-alt"></i></span>
       </div>
     `;
@@ -56,6 +57,7 @@ function displayExpenses() {
       <div class="transaction-description">
         <p>${expense.description}</p>
         <p class="transaction-amount expense">${formatCurrency(expense.amount)}</p>
+        <p class="transaction-timestamp">${expense.timestamp.toLocaleString()}</p>
         <span class="delete-icon" onclick="deleteExpense(${index})"><i class="fas fa-trash-alt"></i></span>
       </div>
     `;
@@ -187,6 +189,25 @@ document.addEventListener("DOMContentLoaded", function() {
   // Restante do seu código JavaScript...
 });
 
+// Função para adicionar uma transação
+function addTransaction(description, amount) {
+  const transaction = {
+    description,
+    amount,
+    timestamp: new Date() // Adiciona a data e hora atual à transação
+  };
+  transactions.push(transaction);
+}
+
+// Função para adicionar uma despesa
+function addExpense(description, amount) {
+  const expense = {
+    description,
+    amount,
+    timestamp: new Date() // Adiciona a data e hora atual à despesa
+  };
+  expenses.push(expense);
+}
 
 
 // Inicializa a página
