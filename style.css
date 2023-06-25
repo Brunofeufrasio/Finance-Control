@@ -232,6 +232,10 @@ body {
 
   }
 
+  #amount {
+    width: 100px;
+  }
+
   footer {
     padding: 5px;
    
