@@ -23,6 +23,7 @@ body {
     background-color: #424242;
     padding: 20px;
     color: #fff;
+    box-shadow:  0px 5px 5px rgba(0, 0, 0, 0.315) ;
   }
 
   #amount {
@@ -61,6 +62,7 @@ body {
     border: none;
     padding: 5px;
     border-radius: 2px;
+    box-shadow:  0px 5px 5px rgba(0, 0, 0, 0.315) ;
   }
   
   #transaction-list {
@@ -98,6 +100,7 @@ body {
     background-color: #f5f5f5;
     padding: 10px;
     text-align: center;
+    box-shadow:  0px 5px 5px rgba(0, 0, 0, 0.315) ;
   }
   
   /* Estilos para a seção de despesas */
@@ -113,6 +116,7 @@ body {
   #expense-form input[type="number"],
   #expense-form button {
     margin-top: 10px;
+    
   }
 
   #income-display {
